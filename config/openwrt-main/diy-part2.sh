@@ -1,42 +1,42 @@
 #!/bin/bash
 #========================================================================================================================
 # https://github.com/ophub/amlogic-s9xxx-openwrt
-# Description: Automatically Build OpenWrt
-# Function: Diy script (After Update feeds, Modify the default IP, hostname, theme, add/remove software packages, etc.)
-# Source code repository: https://github.com/openwrt/openwrt / Branch: main
+#描述:自动构建开放/
+#功能:diy脚本(更新后修改默认IP、主机名、主题、添加/删除软件包等)。)
+#源代码存储库:httPS://gihub.com/AdobeWLT/分支:主要
 #========================================================================================================================
 
 # ------------------------------- Main source started -------------------------------
 #
-# Add the default password for the 'root' user（Change the empty password to 'password'）
-sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' package/base-files/files/etc/shadow
+#添加"根"用户的默认密码(将空密码更改为"密码")
+ 种子 - 我    's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' 包裹/基库文件/档案/文件/等/阴影
 
-# Set etc/openwrt_release
-sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='R$(date +%Y.%m.%d)'|g" package/base-files/files/etc/openwrt_release
-echo "DISTRIB_SOURCECODE='official'" >>package/base-files/files/etc/openwrt_release
+#套等/开放式释放
+ 种子 - 我   "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='R $(date +%Y.%m.%d) '|g" 包/基文件/档案/文件/等等/公开释放
+ 回声 "DISTRIB_SOURCECODE='official'" 包装/基础文件/档案/文件/等/开放式释放
 
-# Modify default IP（FROM 192.168.1.1 CHANGE TO 192.168.31.4）
-# sed -i 's/192.168.1.1/192.168.31.4/g' package/base-files/files/bin/config_generate
+#修改默认IP ( 从192.168.1.1修改为10.10.10.1 )
+# sed -i 's/192.168.1.1/10.10.10.1/g' package/base-files/files/bin/config_generate
 #
 # ------------------------------- Main source ends -------------------------------
 
 # ------------------------------- Other started -------------------------------
 #
-# Add luci-app-amlogic
-svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+#加入透明-应用-逻辑
+//吉图布.com/O多布/路基-辅助/后备箱/路基-辅助/路基-辅助/路基-辅助/路基-辅助
 
-# coolsnowwolf default software package replaced with Lienol related software package
+#冷雪狼默认软件包替换为利诺相关软件包
 # rm -rf feeds/packages/utils/{containerd,libnetwork,runc,tini}
-# svn co https://github.com/Lienol/openwrt-packages/trunk/utils/{containerd,libnetwork,runc,tini} feeds/packages/utils
+#svncohttps://github.com/lienol/开放式包装袋/后备箱/针脚/{集装箱、伦敦图书馆、跑步场、泰尼饲料/包装/针脚
 
-# Add third-party software packages (The entire repository)
-# git clone https://github.com/libremesh/lime-packages.git package/lime-packages
-# Add third-party software packages (Specify the package)
-# svn co https://github.com/libremesh/lime-packages/trunk/packages/{shared-state-pirania,pirania-app,pirania} package/lime-packages/packages
-# Add to compile options (Add related dependencies according to the requirements of the third-party software package Makefile)
-# sed -i "/DEFAULT_PACKAGES/ s/$/ pirania-app pirania ip6tables-mod-nat ipset shared-state-pirania uhttpd-mod-lua/" target/linux/armvirt/Makefile
+#添加第三方软件包(整个存储库)
+#git克隆https://githb.com/利布莱梅/石灰包装。
+#添加第三方软件包(指定包)
+#所罗门群岛国家集团*********************************
+#添加到编译选项(根据第三方软件包的需求添加相关的依赖项)
+#SED-I"/DIDUUULT_包/S/美元/海盗-苹果-苹果-苹果-IP-NatIP共享----国家----海盗---HttPC-模块-Lua/"目标/LINU/ARMVT/制作文件
 
-# Apply patch
+#申请补丁
 # git apply ../config/patches/{0001*,0002*}.patch --directory=feeds/luci
 #
 # ------------------------------- Other ends -------------------------------
